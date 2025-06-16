@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #ffe6f0, #ffffff);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      color: #e60073;
+      font-size: 24px;
+      margin-top: 40px;
+      padding: 0 10px;
+    }
+
+    p {
+      font-size: 16px;
+      margin: 20px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .heart {
+      font-size: 64px;
+      color: red;
+      animation: beat 1s infinite;
+    }
+
+    @keyframes beat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+    }
+
+    .slideshow-container {
+      position: relative;
+      max-width: 90%;
+      margin: 20px auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .mySlides {
+      display: none;
+    }
+
+    .mySlides img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .falling-love {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .snowflake {
+      color: pink;
+      font-size: 24px;
+      position: absolute;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {transform: translateY(-100px); opacity: 1;}
+      100% {transform: translateY(100vh); opacity: 0;}
+    }
+
+    .play-button {
+      margin: 20px auto;
+      font-size: 16px;
+      padding: 10px 20px;
+      background-color: #ff66a3;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .play-button:hover {
+      background-color: #e60073;
+    }
+  </style>
+</head>
+<body>
+  <div class="falling-love" id="loveContainer"></div>
+
+  <h1>Happy birthday, my love. ❤️</h1>
+  <div class="heart">❤️</div>
+
+  <p>
+    I’m so proud of the man you are strong, kind, thoughtful, and always trying your best even when things get tough.<br>
+    Thank you for being my safe place, my biggest supporter, and my favorite person to laugh and grow with.<br>
+    You deserve all the good things this world has to offer, and I’ll always be here to remind you of that. I’m so lucky to call you mine. Love you, always. ❤️
+  </p>
+
+  <div class="slideshow-container">
+    <div class="mySlides"><img src="assets/img1.jpg" alt="Foto 1"></div>
+    <div class="mySlides"><img src="assets/img2.jpg" alt="Foto 2"></div>
+    <div class="mySlides"><img src="assets/img3.jpg" alt="Foto 3"></div>
+    <div class="mySlides"><img src="assets/img4.jpg" alt="Foto 4"></div>
+    <div class="mySlides"><img src="assets/img5.jpg" alt="Foto 5"></div>
+    <div class="mySlides"><img src="assets/img6.jpg" alt="Foto 6"></div>
+  </div>
+
+  <audio id="bg-music" loop>
+    <source src="assets/lagu-romantis.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <button class="play-button" onclick="document.getElementById('bg-music').play()">Play Music 🎶</button>
+
+  <script>
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+      let i;
+      let slides = document.getElementsByClassName("mySlides");
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {slideIndex = 1}
+      slides[slideIndex-1].style.display = "block";
+      setTimeout(showSlides, 2500); // Change image every 2.5 seconds
+    }
+
+    // Generate love snowflakes
+    const loveContainer = document.getElementById('loveContainer');
+    setInterval(() => {
+      const flake = document.createElement('div');
+      flake.className = 'snowflake';
+      flake.textContent = '❤️';
+      flake.style.left = Math.random() * window.innerWidth + 'px';
+      flake.style.animationDuration = (2 + Math.random() * 3) + 's';
+      loveContainer.appendChild(flake);
+      setTimeout(() => loveContainer.removeChild(flake), 5000);
+    }, 300);
+  </script>
+</body>
+</html>
